@@ -1,1 +1,4 @@
-export enum Role {Student="student", Professor="professor",}
+export enum Role {
+  Student = 'student',
+  Professor = 'professor',
+}
