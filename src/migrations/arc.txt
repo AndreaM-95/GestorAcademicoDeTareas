@@ -1,4 +1,0 @@
-Esto esta aqui para que git importe esta carpeta
-(Github no recibe carpetas vacias)
-
-Retirarlo cuando haya contenido
