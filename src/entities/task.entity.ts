@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
 import { Grade } from './grade.entity';
-// import { User } from './user.entity';
+import { User } from './user.entity';
 
 @Entity('tasks')
 export class Task {
@@ -19,15 +19,15 @@ export class Task {
   @Column({ default: false })
   isCompleted: boolean;
 
-   @Column({ type: 'timestamp', nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   deadline?: Date;
 
-  // Relación: Una tarea tiene una nota
-  @Column({ nullable: false })
-  @OneToOne(() => Grade, (grade) => grade.score)
+  // Una tarea tiene una calificación
+  @OneToOne(() => Grade, (grade) => grade.task, { cascade: true })
   grade: Grade;
 
-  // Relación con profesor (se completará más adelante)
-  //   @ManyToOne(() => User, (user) => user.tasks, { nullable: true, eager: true })
-  //   teacher: User;
+  // Una tarea pertenece a un estudiante
+  @ManyToOne(() => User, (user) => user.tasks, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'studentId' })
+  student: User;
 }

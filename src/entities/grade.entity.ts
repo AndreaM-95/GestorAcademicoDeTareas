@@ -1,24 +1,18 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Task } from './task.entity';
 import { User } from './user.entity';
 
-@Entity()
+@Entity('grades')
 export class Grade {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // Relación con el estudiante
-  @OneToOne(() => User, (user) => user.id, { onDelete: 'CASCADE' })
+  // Muchas notas pueden ser de un mismo estudiante
+  @ManyToOne(() => User, (user) => user.grades)
   @JoinColumn({ name: 'studentId' })
-  student: number;
+  student: User;
 
-  // Relación: Una nota, tiene una tarea
+  // Una nota pertenece a una tarea
   @OneToOne(() => Task, (task) => task.grade)
   @JoinColumn({ name: 'taskId' })
   task: Task;

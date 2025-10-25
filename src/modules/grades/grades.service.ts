@@ -41,8 +41,10 @@ export class GradesService {
    * @description Toma el id del estudiante y devuelve todas sus notas
    * @returns Lista de notas
    */
+
+  //TODO: Mostrar datos del estudiante
   async findByStudent(student: number) {
-    return await this.gradesRepository.find({ where: { student } });
+    return await this.gradesRepository.find({ where: { student: { id: student } } });
   }
 
   /**
