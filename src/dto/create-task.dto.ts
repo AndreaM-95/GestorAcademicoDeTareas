@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, IsDateString, IsBoolean } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsDateString, IsBoolean, IsInt } from 'class-validator';
 
 export class CreateTaskDto {
   @IsString()
@@ -19,4 +19,7 @@ export class CreateTaskDto {
 
   @IsDateString()
   deadline: string;
+
+  @IsInt()
+  studentId: number; // para vincular la tarea al estudiante
 }

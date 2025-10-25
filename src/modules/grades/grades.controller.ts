@@ -30,8 +30,8 @@ export class GradesController {
   }
 
   @Post()
-  @UseGuards(RolesGuard)
-  @Roles(Role.Professor)
+  // @UseGuards(RolesGuard)
+  // @Roles(Role.Professor)
   create(@Body() createGradeDto: CreateGradeDto) {
     return this.gradesService.create(createGradeDto);
   }
@@ -45,8 +45,8 @@ export class GradesController {
 
   // Listar notas por estudiante
   @Get('student/:studentId')
-  @UseGuards(RolesGuard)
-  @Roles(Role.Professor)
+  // @UseGuards(RolesGuard)
+  // @Roles(Role.Professor)
   findByStudent(@Param('studentId') studentId: number) {
     return this.gradesService.findByStudent(studentId);
   }
