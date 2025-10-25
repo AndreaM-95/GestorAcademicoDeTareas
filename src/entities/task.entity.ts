@@ -19,6 +19,9 @@ export class Task {
   @Column({ default: false })
   isCompleted: boolean;
 
+   @Column({ type: 'timestamp', nullable: true })
+  deadline?: Date;
+
   // Relación: Una tarea tiene una nota
   @Column({ nullable: false })
   @OneToOne(() => Grade, (grade) => grade.score)

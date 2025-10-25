@@ -1,12 +1,12 @@
 <h1 align-text:"center">API Gestor académico de tareas</h1>
 
 
-# 📘 Documentación del Backend (NestJS)
+# 📘 Documentación
 
-**Nombre del proyecto:** API gestor académico de tareas 
-**Versión actual:** v1.0.0
-**Última actualización:** 23/10/2025  
-**Autores:** Leidy Alvarez, Maria, Andrea Mejía, Luna Salas, 
+- **Nombre del proyecto:** API gestor académico de tareas 
+- **Versión actual:** v1.0.0
+- **Última actualización:** 23/10/2025  
+- **Autores:** Leidy Alvarez, Maria Vargas, Andrea Mejía, Luna Salas, 
 
 ---
 
@@ -22,13 +22,13 @@
 
 ---
 
-## Project setup
+## Configuración del proyecto
 
 ```bash
 $ npm install
 ```
 
-## Compile and run the project
+## Compila y ejecuta el proyecto
 
 ```bash
 # development
@@ -39,19 +39,6 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 ## 📂 Estructura del proyecto

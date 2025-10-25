@@ -16,4 +16,7 @@ export class CreateTaskDto {
   @IsOptional()
   @IsBoolean()
   isCompleted?: boolean;
+
+  @IsDateString()
+  deadline: string;
 }
