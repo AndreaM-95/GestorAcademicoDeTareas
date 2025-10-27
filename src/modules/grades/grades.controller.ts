@@ -29,40 +29,40 @@ export class GradesController {
     return this.gradesService.findOne(id);
   }
 
-  @Post()
   // @UseGuards(RolesGuard)
   // @Roles(Role.Professor)
+  @Post()
   create(@Body() createGradeDto: CreateGradeDto) {
     return this.gradesService.create(createGradeDto);
   }
 
   @Patch(':id')
-  @UseGuards(RolesGuard)
-  @Roles(Role.Professor)
+  // @UseGuards(RolesGuard)
+  // @Roles(Role.Professor)
   update(@Param('id') id: number, @Body() updateGradeDto: UpdateGradeDto) {
     return this.gradesService.update(id, updateGradeDto);
   }
 
   // Listar notas por estudiante
-  @Get('student/:studentId')
+  //@Get('student/:studentId')
   // @UseGuards(RolesGuard)
   // @Roles(Role.Professor)
-  findByStudent(@Param('studentId') studentId: number) {
-    return this.gradesService.findByStudent(studentId);
-  }
+  // findByStudent(@Param('studentId') studentId: number) {
+  //   return this.gradesService.findByStudent(studentId);
+  // }
 
   // Calcular promedio de notas de un estudiante
-  @Get('student/:studentId/average')
-  @UseGuards(RolesGuard)
-  @Roles(Role.Professor, Role.Student)
-  getStudentAverage(@Param('studentId') studentId: number) {
-    return this.gradesService.getStudentAverage(studentId);
-  }
+  // @Get('student/:studentId/average')
+  // @UseGuards(RolesGuard)
+  // @Roles(Role.Professor, Role.Student)
+  // getStudentAverage(@Param('studentId') studentId: number) {
+  //   return this.gradesService.getStudentAverage(studentId);
+  // }
 
-  @Delete(':id')
-  @UseGuards(RolesGuard)
-  @Roles(Role.Professor)
-  remove(@Param('id') id: number) {
-    return this.gradesService.remove(id);
-  }
+  // @Delete(':id')
+  // @UseGuards(RolesGuard)
+  // @Roles(Role.Professor)
+  // remove(@Param('id') id: number) {
+  //   return this.gradesService.remove(id);
+  // }
 }
