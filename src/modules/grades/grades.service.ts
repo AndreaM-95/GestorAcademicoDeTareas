@@ -77,9 +77,20 @@ export class GradesService {
     };
   }
 
+  /**
+   * @description Actualiza la calificación existente en la base de datos. Utiliza el método `preload()` de TypeORM para cargar la entidad actual y fusionar los nuevos valores recibidos desde el DTO.
+   * @param id - Identificador único de la calificación a actualizar.
+   * @param updateGrade - Objeto que contiene los campos a modificar 
+   */
   async update(id: number, updateGrade: UpdateGradeDto) {
-    await this.gradesRepository.update(id, { ...updateGrade });
-    return this.findOne(id);
+    const gradeToUpdate = await this.gradesRepository.preload({
+      id,
+      ...updateGrade,
+    });
+
+    if (!gradeToUpdate) throw new GradeNotFoundException(id);
+    await this.gradesRepository.save(gradeToUpdate);
+    return { message: 'Calificación modificada correctamente'};
   }
 
   /**
