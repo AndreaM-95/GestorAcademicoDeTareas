@@ -13,24 +13,20 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse(); // respuesta de la peticion
     const request = ctx.getRequest(); // Obtiene el objeto de solicitud -contiene toda la información que envía el cliente
 
-    const status =
-      exception instanceof HttpException
-        ? exception.getStatus()
-        : HttpStatus.INTERNAL_SERVER_ERROR;
+    const status = exception instanceof HttpException //Si es mi excepción personalizada
+      ? exception.getStatus() //Mi excepción personalizada
+      : HttpStatus.INTERNAL_SERVER_ERROR; //Excepción de nest
 
-    const message =
-      exception instanceof HttpException 
-      ? exception.getResponse : exception;
+    const message = exception instanceof HttpException
+      ? exception.getResponse()
+      : exception;
 
-     response.status(status).json({
+    response.status(status).json({
       success: false,
-      statusCode: status,
-      message:
-        typeof response === 'string'
-          ? response
-          : (response as any).message || 'Unexpected error occurred',
-      path: request.url,
-      timestamp: new Date().toISOString(),
+      statusCode: status, 
+      path: request.url, //Ruta donde se ha producido el error
+      timeStamp: new Date().toLocaleString('es-CO', { timeZone: 'America/Bogota' }),
+      message: message
     });
   }
 }
