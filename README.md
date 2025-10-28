@@ -51,13 +51,29 @@ src/
  │   ├── enums
  │   │   └── roles.enum.ts
  │   ├── exceptions
- │   │   └── 
+ │   |   ├── auth
+ |   |   |   ├── invalid-credentials.exception.ts
+ |   |   |   ├── token-expired.exception.ts
+ |   |   |   └── token-invalid.exception.ts
+ │   |   ├── grades
+ |   |   |   ├── duplicate-grade.exception.ts
+ |   |   |   ├── grade-not-found.exception.ts
+ |   |   |   ├── invalid-grade-value.exception.ts
+ |   |   |   └── no-grade.exception.ts
+ │   |   ├── tasks
+ |   |   |   ├── invalid-task-deadline.exception.ts
+ |   |   |   ├── task-already-exists.exception.ts
+ |   |   |   ├── task-not-found.exception.ts
+ |   |   |   └── unauthorized-task-access.exception.ts
+ │   |   └── users
+ |   |       ├── email-already-exists.exception.ts
+ |   |       ├── unauthorized-role-action.exception.ts
+ |   |       └── user-not-found.exception.ts
  │   ├── filters
- │   │   └── 
- │   ├── guards
- │   │   └── roles.guard.ts
- │   ├── pipes
- │   │   └── parse-uppertrim.pipe.ts
+ │   │   └── global-exception.filter.ts
+ │   └── guards
+ │       ├── jwt-guard.ts
+ │       └── roles.guard.ts
  ├── dto/
  │   ├── create-grade.dto.ts
  │   ├── create-task.dto.ts
@@ -70,7 +86,7 @@ src/
  │   ├── task.entity.ts
  │   └── user.entity.ts
  ├── migrations/
- │   └── 
+ │   └── 1761426148341-InitMigration.ts
  ├── modules/
  |   ├── auth/
  │   |   ├── auth.controller.ts
@@ -94,6 +110,43 @@ src/
  ├── app.service.ts
  └── main.ts
 ```
+
+---
+
+## 🚀 Endpoints principales
+
+### 🔐 Autenticación
+| Método | Ruta | Descripción | Requiere Token |
+|--------|-------|--------------|----------------|
+|  |  | Registra un nuevo usuario |  |
+|  |  | Inicia sesión y devuelve token JWT |  |
+
+---
+
+### 👤 Usuarios
+| Método | Ruta | Descripción | Requiere Token | Rol permitido |
+|--------|-------|--------------|----------------|----------------|
+| `GET` | `/users` | Obtiene todos los usuarios | ✅ |  |
+| `GET` | `/users/:id` | Obtiene un usuario por ID | ✅ |  |
+
+---
+
+### 📝 Tareas
+| Método | Ruta | Descripción | Requiere Token | Rol permitido |
+|--------|-------|--------------|----------------|----------------|
+|  |  |  |  |  |
+
+
+---
+
+### ✅ Calificaciones
+| Método | Ruta | Descripción | Requiere Token | Rol permitido |
+|--------|-------|--------------|----------------|----------------|
+| `POST` | `/grades` | Crea una calificación | ✅ | Profesor |
+| `PATCH` | `/grades/:id` | Actualiza una calificación | ✅ | Profesor |
+| `GET` | `/grades/student/:studentId` | Muestra las notas de un estudiante | ✅ | Profesor |
+| `GET` | `/grades/student/:studentId/average` | Devuelve el promedio de las notas | ✅ | Profesor - Estudiante |
+| `DELETE` | `/grades/:id` | Elimina una calificación | ✅ | Profesor |
 
 ---
 

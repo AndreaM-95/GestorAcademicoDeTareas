@@ -7,8 +7,8 @@ export class InvalidGradeValueException extends HttpException {
     super(
       {
         errorType: 'InvalidGradeValueException',
-        message: `Invalid grade value: ${value}. Grades must be between 0 and 100.`,
-        message_es: `Valor de calificación no válido: ${value}. Las calificaciones deben estar entre 0 y 100.`
+        message: `Invalid grade value: ${value}. Grades must be between 0 and 5.`,
+        message_es: `Valor de calificación no válido: ${value}. Las calificaciones deben estar entre 0 y 5.`
       },
       HttpStatus.BAD_REQUEST,
     );
