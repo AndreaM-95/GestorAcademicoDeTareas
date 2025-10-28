@@ -144,7 +144,7 @@ src/
 |--------|-------|--------------|----------------|----------------|
 | `POST` | `/grades` | Crea una calificación | ✅ | Profesor |
 | `PATCH` | `/grades/:id` | Actualiza una calificación | ✅ | Profesor |
-| `GET` | `/grades/student/:studentId` | Muestra las notas de un estudiante | ✅ | Profesor - Estudiante |
+| `GET` | `/grades/student/:studentId` | Muestra las notas de un estudiante | ✅ | Profesor |
 | `GET` | `/grades/student/:studentId/average` | Devuelve el promedio de las notas | ✅ | Profesor - Estudiante |
 | `DELETE` | `/grades/:id` | Elimina una calificación | ✅ | Profesor |
 
