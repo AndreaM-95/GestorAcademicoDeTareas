@@ -38,6 +38,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
       success: false,
       statusCode: status,
       message: message, // Ahora usa la variable message correctamente
+
+
+
       path: request.url,
       timestamp: new Date().toISOString(),
     });

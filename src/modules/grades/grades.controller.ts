@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   UseGuards,
@@ -19,49 +20,37 @@ import { RolesGuard } from 'src/common/guards/roles.guard';
 export class GradesController {
   constructor(private readonly gradesService: GradesService) {}
 
-  @Get()
-  findAll() {
-    return this.gradesService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.gradesService.findOne(id);
-  }
-
-  @Post()
   // @UseGuards(RolesGuard)
   // @Roles(Role.Professor)
+  @Post()
   create(@Body() createGradeDto: CreateGradeDto) {
     return this.gradesService.create(createGradeDto);
   }
 
+  // @UseGuards(RolesGuard)
+  // @Roles(Role.Professor)
   @Patch(':id')
-  @UseGuards(RolesGuard)
-  @Roles(Role.Professor)
-  update(@Param('id') id: number, @Body() updateGradeDto: UpdateGradeDto) {
+  update(@Param('id', ParseIntPipe) id: number, @Body() updateGradeDto: UpdateGradeDto) {
     return this.gradesService.update(id, updateGradeDto);
   }
 
-  // Listar notas por estudiante
-  @Get('student/:studentId')
   // @UseGuards(RolesGuard)
   // @Roles(Role.Professor)
-  findByStudent(@Param('studentId') studentId: number) {
+  @Get('student/:studentId')
+  findByStudent(@Param('studentId', ParseIntPipe) studentId: number) {
     return this.gradesService.findByStudent(studentId);
   }
 
-  // Calcular promedio de notas de un estudiante
+  // @UseGuards(RolesGuard)
+  // @Roles(Role.Professor, Role.Student)
   @Get('student/:studentId/average')
-  @UseGuards(RolesGuard)
-  @Roles(Role.Professor, Role.Student)
-  getStudentAverage(@Param('studentId') studentId: number) {
+  getStudentAverage(@Param('studentId', ParseIntPipe) studentId: number) {
     return this.gradesService.getStudentAverage(studentId);
   }
 
+  // @UseGuards(RolesGuard)
+  // @Roles(Role.Professor)
   @Delete(':id')
-  @UseGuards(RolesGuard)
-  @Roles(Role.Professor)
   remove(@Param('id') id: number) {
     return this.gradesService.remove(id);
   }
