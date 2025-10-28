@@ -19,20 +19,6 @@ export class GradesService {
     private gradesRepository: Repository<Grade>,
   ) {}
 
-  //FUNCIONA
-  async findAll() {
-    return await this.gradesRepository.find();
-  }
-
-  //FUNCIONA
-  async findOne(id: number) {
-    const gradeFind = await this.gradesRepository.findOne({ where: { id } });
-    if (!gradeFind) throw new GradeNotFoundException(id);
-    return gradeFind;
-  }
-
-  //listar notas según la tarea
-
   //FUNCIONA - Consultar refactorización 63 - 77
   /**
    * @description Crea una calificación si no existe para el estudiante y la tarea.
@@ -78,6 +64,7 @@ export class GradesService {
     };
   }
 
+  //FUNCIONA
   /**
    * @description Actualiza la calificación existente en la base de datos. Utiliza el método `preload()` de TypeORM para cargar la entidad actual y fusionar los nuevos valores recibidos desde el DTO.
    * @param id - Identificador único de la calificación a actualizar.
@@ -122,6 +109,7 @@ export class GradesService {
     };
   }
 
+  //FUNCIONA
   /**
    * @description Toma el id del estudiante y calcula el promedio de sus notas
    * @returns Mensaje informativo con el promedio de las notas
@@ -139,12 +127,15 @@ export class GradesService {
     return { message: `El promedio de este estudiante es de: ${averageScore}` };
   }
 
-  // async remove(id: number) {
-  //   const result = await this.gradesRepository.delete(id);
-  //   if (result.affected === 0)
-  //     throw new BadRequestException(
-  //       `Calificación con id #${id} no encontrada.`,
-  //     );
-  //   return { message: 'Calificación eliminada correctamente' };
-  // }
+  //FUNCIONA
+  /**
+   * @description Elimina una calificación asociada a una tarea
+   * @param id de la calificación
+   * @returns Mensaje de confirmación
+   */
+  async remove(id: number) {
+    const result = await this.gradesRepository.delete(id);
+    if (result.affected === 0) throw new GradeNotFoundException(id);
+    return { message: 'Calificación eliminada correctamente' };
+  }
 }
