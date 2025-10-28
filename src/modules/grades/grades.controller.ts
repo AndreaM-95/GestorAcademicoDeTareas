@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   UseGuards,
@@ -47,17 +48,17 @@ export class GradesController {
   // @UseGuards(RolesGuard)
   // @Roles(Role.Professor)
   @Get('student/:studentId')
-  findByStudent(@Param('studentId') studentId: number) {
+  findByStudent(@Param('studentId', ParseIntPipe) studentId: number) {
     return this.gradesService.findByStudent(studentId);
   }
 
   // Calcular promedio de notas de un estudiante
-  // @Get('student/:studentId/average')
   // @UseGuards(RolesGuard)
   // @Roles(Role.Professor, Role.Student)
-  // getStudentAverage(@Param('studentId') studentId: number) {
-  //   return this.gradesService.getStudentAverage(studentId);
-  // }
+  @Get('student/:studentId/average')
+  getStudentAverage(@Param('studentId', ParseIntPipe) studentId: number) {
+    return this.gradesService.getStudentAverage(studentId);
+  }
 
   // @Delete(':id')
   // @UseGuards(RolesGuard)

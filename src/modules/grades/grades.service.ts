@@ -94,6 +94,7 @@ export class GradesService {
     return { message: 'Calificación modificada correctamente'};
   }
 
+  //FUNCIONA
   /**
    * @description Toma el id del estudiante y devuelve todas sus notas con información del estudiante y tareas
    * @param student - ID del estudiante
@@ -123,16 +124,20 @@ export class GradesService {
 
   /**
    * @description Toma el id del estudiante y calcula el promedio de sus notas
-   * @returns El promedio de las notas
+   * @returns Mensaje informativo con el promedio de las notas
    */
-  // async getStudentAverage(studentId: number) {
-  //   const grades = await this.findByStudent(studentId);
-  //   if (grades.length === 0) return 0;
+  async getStudentAverage(studentId: number) {
+    const grades = await this.gradesRepository.find({ 
+      where: { student: { id: studentId } },
+      relations: ['student', 'task']
+    });
 
-  //   const totalScore = grades.reduce((sum, grade) => sum + grade.score, 0);
-  //   const averageScore = parseFloat((totalScore / grades.length).toFixed(2));
-  //   return averageScore;
-  // }
+    if (grades.length === 0) throw new NoGradesException();
+
+    const totalScore = grades.reduce((sum, grade) => sum + grade.score, 0);
+    const averageScore = (totalScore / grades.length);
+    return { message: `El promedio de este estudiante es de: ${averageScore}` };
+  }
 
   // async remove(id: number) {
   //   const result = await this.gradesRepository.delete(id);
