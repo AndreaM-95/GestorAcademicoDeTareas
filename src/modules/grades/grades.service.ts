@@ -6,6 +6,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { DuplicateGradeException } from 'src/common/exceptions/grades/duplicate-grade.exception';
 import { GradeNotFoundException } from 'src/common/exceptions/grades/grade-not-found.exception';
+import { NoGradesException } from 'src/common/exceptions/grades/no-grade.exception';
 import { CreateGradeDto } from 'src/dto/create-grade.dto';
 import { UpdateGradeDto } from 'src/dto/update-grade.dto';
 import { Grade } from 'src/entities/grade.entity';
@@ -94,14 +95,31 @@ export class GradesService {
   }
 
   /**
-   * @description Toma el id del estudiante y devuelve todas sus notas
-   * @returns Lista de notas
+   * @description Toma el id del estudiante y devuelve todas sus notas con información del estudiante y tareas
+   * @param student - ID del estudiante
+   * @returns Objeto con información del estudiante y lista de sus calificaciones
    */
+  async findByStudent(student: number) {
+    const grades = await this.gradesRepository.find({ 
+      where: { student: { id: student } },
+      relations: ['student', 'task']
+    });
 
-  //TODO: Mostrar datos del estudiante
-  // async findByStudent(student: number) {
-  //   return await this.gradesRepository.find({ where: { student: { id: student } } });
-  // }
+    if (grades.length === 0) throw new NoGradesException();
+
+    const { firstName, lastName } = grades[0].student;
+
+    return {
+      studentName: `${firstName} ${lastName}`,
+      studentId: student,
+      grades: grades.map(grade => ({
+        taskTitle: grade.task.title,
+        score: grade.score,
+        gradeId: grade.id
+      })),
+      totalGrades: grades.length
+    };
+  }
 
   /**
    * @description Toma el id del estudiante y calcula el promedio de sus notas

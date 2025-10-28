@@ -36,20 +36,20 @@ export class GradesController {
     return this.gradesService.create(createGradeDto);
   }
 
-  @Patch(':id')
   // @UseGuards(RolesGuard)
   // @Roles(Role.Professor)
+  @Patch(':id')
   update(@Param('id') id: number, @Body() updateGradeDto: UpdateGradeDto) {
     return this.gradesService.update(id, updateGradeDto);
   }
 
   // Listar notas por estudiante
-  //@Get('student/:studentId')
   // @UseGuards(RolesGuard)
   // @Roles(Role.Professor)
-  // findByStudent(@Param('studentId') studentId: number) {
-  //   return this.gradesService.findByStudent(studentId);
-  // }
+  @Get('student/:studentId')
+  findByStudent(@Param('studentId') studentId: number) {
+    return this.gradesService.findByStudent(studentId);
+  }
 
   // Calcular promedio de notas de un estudiante
   // @Get('student/:studentId/average')
