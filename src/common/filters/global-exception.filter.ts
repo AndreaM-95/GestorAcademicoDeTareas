@@ -1,3 +1,4 @@
+
 import {
   ArgumentsHost,
   Catch,
@@ -7,31 +8,38 @@ import {
 } from '@nestjs/common';
 
 @Catch()
-export class HttpExceptionFilter implements ExceptionFilter {
+export class AllExceptionsFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost) {
-    const ctx = host.switchToHttp(); //contexto de la peticion
-    const response = ctx.getResponse(); // respuesta de la peticion
-    const request = ctx.getRequest(); // Obtiene el objeto de solicitud -contiene toda la información que envía el cliente
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse();
+    const request = ctx.getRequest();
 
     const status =
       exception instanceof HttpException
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
-    const message =
-      exception instanceof HttpException 
-      ? exception.getResponse : exception;
+    // CORRECCIÓN: Aquí está el problema principal
+    let message: any = 'Unexpected error occurred';
+    
+    if (exception instanceof HttpException) {
+      const exceptionResponse = exception.getResponse(); // Agregué los paréntesis ()
+      
+      if (typeof exceptionResponse === 'string') {
+        message = exceptionResponse;
+      } else if (typeof exceptionResponse === 'object' && exceptionResponse !== null) {
+        message = (exceptionResponse as any).message || exceptionResponse;
+      }
+    } else if (exception instanceof Error) {
+      message = exception.message;
+    }
 
-     response.status(status).json({
+    response.status(status).json({
       success: false,
       statusCode: status,
-      message:
-        typeof response === 'string'
-          ? response
-          : (response as any).message || 'Unexpected error occurred',
+      message: message, // Ahora usa la variable message correctamente
       path: request.url,
       timestamp: new Date().toISOString(),
     });
   }
 }
-  
