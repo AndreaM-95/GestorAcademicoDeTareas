@@ -14,4 +14,3 @@ export class CreateGradeDto {
   @Max(5)
   score: number;
 }
-

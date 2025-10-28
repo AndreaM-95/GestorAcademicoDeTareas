@@ -24,7 +24,7 @@ export class GradesService {
    * @description Crea una calificación si no existe para el estudiante y la tarea.
    * @param newGrade DTO con id del estudiante, id de la tarea y la calificación.
    * @returns Objeto con mensaje, estudiante, tarea y nota.
-   */
+  */
   async create(newGrade: CreateGradeDto) {
     const { studentId, taskId, score } = newGrade;
 
@@ -34,9 +34,7 @@ export class GradesService {
       relations: ['task', 'student'],
     });
 
-    if (gradeExists) {
-      throw new DuplicateGradeException(studentId, taskId);
-    }
+    if (gradeExists) throw new DuplicateGradeException(studentId, taskId);
 
     // Crear y guardar la nueva calificación
     const newGradeEntity = this.gradesRepository.create({
@@ -57,14 +55,13 @@ export class GradesService {
 
     const { firstName, lastName } = grade.student;
     return {
-      message: '✅ Calificación creada correctamente',
+      message: 'Calificación creada correctamente',
       studentName: `${firstName} ${lastName}`,
       taskTitle: grade.task.title,
       score: grade.score,
     };
   }
 
-  //FUNCIONA
   /**
    * @description Actualiza la calificación existente en la base de datos. Utiliza el método `preload()` de TypeORM para cargar la entidad actual y fusionar los nuevos valores recibidos desde el DTO.
    * @param id - Identificador único de la calificación a actualizar.
@@ -81,7 +78,6 @@ export class GradesService {
     return { message: 'Calificación modificada correctamente'};
   }
 
-  //FUNCIONA
   /**
    * @description Toma el id del estudiante y devuelve todas sus notas con información del estudiante y tareas
    * @param student - ID del estudiante
@@ -97,19 +93,19 @@ export class GradesService {
 
     const { firstName, lastName } = grades[0].student;
 
-    return {
+    let message = {
       studentName: `${firstName} ${lastName}`,
       studentId: student,
       grades: grades.map(grade => ({
         taskTitle: grade.task.title,
-        score: grade.score,
-        gradeId: grade.id
+        score: grade.score
       })),
       totalGrades: grades.length
     };
+
+    return message;
   }
 
-  //FUNCIONA
   /**
    * @description Toma el id del estudiante y calcula el promedio de sus notas
    * @returns Mensaje informativo con el promedio de las notas
@@ -127,7 +123,6 @@ export class GradesService {
     return { message: `El promedio de este estudiante es de: ${averageScore}` };
   }
 
-  //FUNCIONA
   /**
    * @description Elimina una calificación asociada a una tarea
    * @param id de la calificación
