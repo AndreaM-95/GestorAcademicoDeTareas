@@ -16,7 +16,7 @@ export class TasksService {
     private readonly taskRepository: Repository<Task>,
   ) {}
 
-  async create(createTaskDto: CreateTaskDto, professorId: number): Promise<Task> {
+  async create(createTaskDto: CreateTaskDto, professorId: number){
     // Validar que no exista una tarea con el mismo título
     const existingTask = await this.taskRepository.findOne({
       where: { title: createTaskDto.title },
@@ -41,7 +41,7 @@ export class TasksService {
     return await this.taskRepository.save(task);
   }
 
-  async findAll(userId: number, userRole: string): Promise<Task[]> {
+  async findAll(userId: number, userRole: string) {
     // Si es profesor, puede ver todas las tareas
     if (userRole === 'professor') {
       return await this.taskRepository.find({
@@ -56,7 +56,7 @@ export class TasksService {
     });
   }
 
-  async findOne(id: number, userId: number, userRole: string): Promise<Task> {
+  async findOne(id: number, userId: number, userRole: string) {
     const task = await this.taskRepository.findOne({ 
       where: { id },
       relations: ['student']
@@ -74,7 +74,7 @@ export class TasksService {
     return task;
   }
 
-  async update(id: number, updateTaskDto: UpdateTaskDto, professorId: number): Promise<Task> {
+  async update(id: number, updateTaskDto: UpdateTaskDto, professorId: number) {
     const task = await this.taskRepository.findOne({
       where: { id },
       relations: ['student']
