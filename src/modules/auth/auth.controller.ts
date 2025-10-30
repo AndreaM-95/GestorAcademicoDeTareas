@@ -6,7 +6,7 @@ import { JwtAuthGuard } from '../../common/guards/jwt.guard';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Auth')
-@Controller('authM')
+@Controller('api/authM')
 export class AuthController {
 
     constructor(private authService: AuthService) { }

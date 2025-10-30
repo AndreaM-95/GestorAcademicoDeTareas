@@ -66,11 +66,6 @@ export class TasksService {
       throw new TaskNotFoundException(id);
     }
 
-    // Si es estudiante, validar que la tarea le pertenezca
-    if (userRole === 'student' && task.student.id !== userId) {
-      throw new UnauthorizedTaskAccessException();
-    }
-
     return task;
   }
 

@@ -19,7 +19,6 @@ export class GradesService {
     private gradesRepository: Repository<Grade>,
   ) {}
 
-  //FUNCIONA - Consultar refactorización 63 - 77
   /**
    * @description Crea una calificación si no existe para el estudiante y la tarea.
    * @param newGrade DTO con id del estudiante, id de la tarea y la calificación.
@@ -120,7 +119,7 @@ export class GradesService {
 
     const totalScore = grades.reduce((sum, grade) => sum + grade.score, 0);
     const averageScore = (totalScore / grades.length);
-    return { message: `El promedio de este estudiante es de: ${averageScore}` };
+    return { message: `El promedio de este estudiante es de: ${averageScore.toFixed(1)}` };
   }
 
   /**
