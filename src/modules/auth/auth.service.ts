@@ -41,8 +41,15 @@ export class AuthService {
         const registerUser = this.userRepo.create({ ...data, passwordHash: hashedPassword });
 
         await this.userRepo.save(registerUser);
-        return { message: 'El usuario ha sido creado exitosamente', user: { id: registerUser.id, email: registerUser.email, firstName: registerUser.firstName, lastName: registerUser.lastName } };
-
+        return { 
+            message: 'El usuario ha sido creado exitosamente', 
+            user: { 
+                id: registerUser.id, 
+                email: registerUser.email, 
+                firstName: registerUser.firstName, 
+                lastName: registerUser.lastName 
+            } 
+        };
     }
 
 
