@@ -6,7 +6,11 @@
 - **Nombre del proyecto:** API gestor académico de tareas 
 - **Versión actual:** v1.0.0
 - **Última actualización:** 04/11/2025  
-- **Autores:** `Leidy Alvarez`, `Maria Vargas`, `Andrea Mejía`, `Luna Salas`, 
+- **Autoras:**
+  - `Leidy Alvarez`
+  - `Maria Vargas`
+  - `Andrea Mejía`
+  - `Luna Salas`
 
 ---
 
@@ -150,11 +154,11 @@ src/
 ### ✅ Calificaciones
 | Método | Ruta | Descripción | Requiere Token | Rol permitido |
 |--------|-------|--------------|----------------|----------------|
-| `POST` | `/api/grades` | Crea una calificación | ✅ | Profesor |
-| `PATCH` | `/api/grades/:id` | Actualiza una calificación | ✅ | Profesor |
-| `GET` | `/api/grades/student/:studentId` | Muestra las notas de un estudiante | ✅ | Profesor |
-| `GET` | `/api/grades/student/:studentId/average` | Devuelve el promedio de las notas | ✅ | Profesor - Estudiante |
-| `DELETE` | `/api/grades/:id` | Elimina una calificación | ✅ | Profesor |
+| `POST` | `/api/grades` | Crea una calificación | ✅ | Professor |
+| `PATCH` | `/api/grades/:id` | Actualiza una calificación | ✅ | Professor |
+| `GET` | `/api/grades/student/:studentId` | Muestra las notas de un estudiante | ✅ | Professor |
+| `GET` | `/api/grades/student/:studentId/average` | Devuelve el promedio de las notas | ✅ | Professor & Student |
+| `DELETE` | `/api/grades/:id` | Elimina una calificación | ✅ | Professor |
 
 ---
 
@@ -223,8 +227,8 @@ JWT_EXPIRES_IN= tiempo_expiracion_token
 - Proyecto probado con **Postman** localmente.  
 - Base de datos administrada con **DBeaver**.  
 - Las rutas están protegidas con `JwtAuthGuard` excepto `/api/authM/register` y `/api/authM/login`.  
-- Documentación de la API en Swagger.
-
+- Documentación de la API en Swagger en `http://localhost:4000/api/docs`
+- Proximamente se desplegará el proyecto
 ---
 
 📄 **Fin de la documentación**
