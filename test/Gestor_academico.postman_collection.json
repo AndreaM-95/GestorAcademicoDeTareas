@@ -282,7 +282,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnbWFpbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxODcyODA2LCJleHAiOjE3NjE4NzY0MDZ9.xTFEyvODjWqUXw-CUlFJZKAK1urBo3MfbchyvoqrjbU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnbWFpbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYyMjcyNDI3LCJleHAiOjE3NjIyNzYwMjd9.vRPUTUKeki6XOsvvZJ1b6qB9pxIP_ArX4D4XMh1JvZ0",
 									"type": "string"
 								}
 							]
@@ -291,7 +291,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"studentId\": 2,\r\n    \"taskId\": 3,\r\n    \"score\": 4000\r\n}",
+							"raw": "{\r\n    \"studentId\": 2,\r\n    \"taskId\": 2,\r\n    \"score\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -319,7 +319,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnYW1pbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxNzkyNzAxLCJleHAiOjE3NjE3OTYzMDF9.kh5TNJ9lxvM3rLZoK4-kE6pPUNvkmBMQauYFHLvbN3M",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnbWFpbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYyMjcyNDI3LCJleHAiOjE3NjIyNzYwMjd9.vRPUTUKeki6XOsvvZJ1b6qB9pxIP_ArX4D4XMh1JvZ0",
 									"type": "string"
 								}
 							]
@@ -328,7 +328,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"studentId\": 2,\r\n    \"taskId\": 5,\r\n    \"score\": 4\r\n}",
+							"raw": "{\r\n    \"score\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -336,14 +336,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/api/grades/7",
+							"raw": "{{BASE_URL}}/api/grades/5",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
 								"grades",
-								"7"
+								"5"
 							]
 						}
 					},
@@ -351,28 +351,21 @@
 				},
 				{
 					"name": "ListaTareasYCalificaciones",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnYW1pbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxNzkyNzAxLCJleHAiOjE3NjE3OTYzMDF9.kh5TNJ9lxvM3rLZoK4-kE6pPUNvkmBMQauYFHLvbN3M",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnbWFpbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYyMjcyNDI3LCJleHAiOjE3NjIyNzYwMjd9.vRPUTUKeki6XOsvvZJ1b6qB9pxIP_ArX4D4XMh1JvZ0",
 									"type": "string"
 								}
 							]
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"studentId\": 2,\r\n    \"taskId\": 2,\r\n    \"score\": 3\r\n}"
-						},
 						"url": {
-							"raw": "{{BASE_URL}}/api/grades/student/2",
+							"raw": "{{BASE_URL}}/api/grades/student/3",
 							"host": [
 								"{{BASE_URL}}"
 							],
@@ -380,7 +373,7 @@
 								"api",
 								"grades",
 								"student",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -394,7 +387,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnbWFpbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxODY4MzQyLCJleHAiOjE3NjE4NzE5NDJ9.17hVSjKt2I9_TBamMAV4nPV1JaCTZ8nPI5umQdqhyl0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnbWFpbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYyMjcyNDI3LCJleHAiOjE3NjIyNzYwMjd9.vRPUTUKeki6XOsvvZJ1b6qB9pxIP_ArX4D4XMh1JvZ0",
 									"type": "string"
 								}
 							]
@@ -425,7 +418,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnYW1pbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxNzkyNzAxLCJleHAiOjE3NjE3OTYzMDF9.kh5TNJ9lxvM3rLZoK4-kE6pPUNvkmBMQauYFHLvbN3M",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnbWFpbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYyMjcyNDI3LCJleHAiOjE3NjIyNzYwMjd9.vRPUTUKeki6XOsvvZJ1b6qB9pxIP_ArX4D4XMh1JvZ0",
 									"type": "string"
 								}
 							]
@@ -437,14 +430,14 @@
 							"raw": "{\r\n    \"studentId\": 2,\r\n    \"taskId\": 2,\r\n    \"score\": 5\r\n}"
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/api/grades/9",
+							"raw": "{{BASE_URL}}/api/grades/20",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
 								"grades",
-								"9"
+								"20"
 							]
 						}
 					},
