@@ -5,8 +5,8 @@
 
 - **Nombre del proyecto:** API gestor académico de tareas 
 - **Versión actual:** v1.0.0
-- **Última actualización:** 23/10/2025  
-- **Autores:** Leidy Alvarez, Maria Vargas, Andrea Mejía, Luna Salas, 
+- **Última actualización:** 04/11/2025  
+- **Autores:** `Leidy Alvarez`, `Maria Vargas`, `Andrea Mejía`, `Luna Salas`, 
 
 ---
 
@@ -118,35 +118,43 @@ src/
 ### 🔐 Autenticación
 | Método | Ruta | Descripción | Requiere Token |
 |--------|-------|--------------|----------------|
-|  |  | Registra un nuevo usuario |  |
-|  |  | Inicia sesión y devuelve token JWT |  |
+| `POST` | `/api/authM/register` | Registra un nuevo usuario | ❌ |
+| `POST` | `/api/authM/login` | Inicia sesión y devuelve token JWT | ❌ |
+| `GET` | `/api/authM/profile` | Devuelve la informacion del usuario | ✅ |
 
 ---
 
 ### 👤 Usuarios
 | Método | Ruta | Descripción | Requiere Token | Rol permitido |
 |--------|-------|--------------|----------------|----------------|
-| `GET` | `/users` | Obtiene todos los usuarios | ✅ |  |
-| `GET` | `/users/:id` | Obtiene un usuario por ID | ✅ |  |
+| `POST` | `/api/users` | Crea un nuevo usuario | ✅ | Professor |
+| `GET` | `/api/users` | Obtiene todos los usuarios | ✅ | Professor & Student |
+| `GET` | `/api/users/role/students` | Obtiene solo los estudiantes | ✅ | Professor |
+| `GET` | `/api/users/:id` | Obtiene un solo usuario | ✅ | Professor & Student |
+| `PATCH` | `/api/users/:id` | Actualiza a un usuario | ✅ | Professor |
+| `PATCH` | `/api/users/:id` | Desactiva a un usuario | ✅ | Professor |
 
 ---
 
 ### 📝 Tareas
 | Método | Ruta | Descripción | Requiere Token | Rol permitido |
 |--------|-------|--------------|----------------|----------------|
-|  |  |  |  |  |
-
+| `POST` | `/api/tasks` | Crea una nueva tarea | ✅ | Professor |
+| `GET` | `/api/tasks` | Obtiene todas las tareas | ✅ | Professor & Student |
+| `GET` | `/api/tasks/:id` | Obtiene una sóla tarea | ✅ | Professor & Student |
+| `PUT` | `/api/tasks/:id` | Actualiza una tarea | ✅ | Professor |
+| `DELETE` | `/api/tasks/:id` | Elimina una tarea | ✅ | Professor |
 
 ---
 
 ### ✅ Calificaciones
 | Método | Ruta | Descripción | Requiere Token | Rol permitido |
 |--------|-------|--------------|----------------|----------------|
-| `POST` | `/grades` | Crea una calificación | ✅ | Profesor |
-| `PATCH` | `/grades/:id` | Actualiza una calificación | ✅ | Profesor |
-| `GET` | `/grades/student/:studentId` | Muestra las notas de un estudiante | ✅ | Profesor |
-| `GET` | `/grades/student/:studentId/average` | Devuelve el promedio de las notas | ✅ | Profesor - Estudiante |
-| `DELETE` | `/grades/:id` | Elimina una calificación | ✅ | Profesor |
+| `POST` | `/api/grades` | Crea una calificación | ✅ | Profesor |
+| `PATCH` | `/api/grades/:id` | Actualiza una calificación | ✅ | Profesor |
+| `GET` | `/api/grades/student/:studentId` | Muestra las notas de un estudiante | ✅ | Profesor |
+| `GET` | `/api/grades/student/:studentId/average` | Devuelve el promedio de las notas | ✅ | Profesor - Estudiante |
+| `DELETE` | `/api/grades/:id` | Elimina una calificación | ✅ | Profesor |
 
 ---
 
@@ -156,8 +164,40 @@ src/
   ```
   Authorization: Bearer <token>
   ```
-- Los tokens se generan al iniciar sesión (`/auth/login`).  
+- Los tokens se generan al iniciar sesión (`/api/authM/login`).  
 - Las contraseñas se almacenan **encriptadas con bcrypt** antes de guardarse en la base de datos.
+
+---
+
+## 🧪 Pruebas con Postman
+
+- **Colección:** `Consultas-UsuariosProductos.postman_collection.json`
+- **Variable de entorno:**  
+  ```
+  {{BASE_URL}} = http://localhost:4000
+  ```
+
+### Ejemplo de flujo de prueba
+
+1. Registrar un usuario (`/api/authM/register`)
+2. Iniciar sesión (`/api/authM/login`)
+3. Copiar el token JWT devuelto
+4. Usar el token para acceder a `/api/users`, `/api/tasks` o `/api/grades`
+
+**Ejemplo de Login Request:**
+```json
+{
+  "email": "user@ejemplo.com",
+  "password": "123456"
+}
+```
+
+**Ejemplo de Login Response:**
+```json
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
 
 ---
 
@@ -175,6 +215,15 @@ DB_NAME= nombre_base_de_datos
 JWT_SECRET_KEY= llave_secreta
 JWT_EXPIRES_IN= tiempo_expiracion_token
 ```
+
+---
+
+## 🧩 Notas adicionales
+
+- Proyecto probado con **Postman** localmente.  
+- Base de datos administrada con **DBeaver**.  
+- Las rutas están protegidas con `JwtAuthGuard` excepto `/api/authM/register` y `/api/authM/login`.  
+- Documentación de la API en Swagger.
 
 ---
 
