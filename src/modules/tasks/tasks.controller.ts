@@ -54,7 +54,7 @@ export class TasksController {
     @ApiResponse({ status: 401, description: 'No autenticado' })
     @ApiResponse({ status: 403, description: 'Prohibido - No puedes modificar esta tarea' })
     @ApiResponse({ status: 404, description: 'Tarea no encontrada' })
-     @Roles(Role.Professor)
+    @Roles(Role.Professor)
     update(@Param('id', ParseIntPipe) id: number, @Body() updateTaskDto: UpdateTaskDto, @Request() req) {
         return this.tasksService.update(id, updateTaskDto, req.user.userId);
     }
