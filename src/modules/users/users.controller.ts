@@ -50,8 +50,8 @@ export class UsersController {
   @ApiResponse({ status: 401, description: 'No autorizado' })
   @Roles(Role.Professor) // Only professors can see all students
   findAllStudents() {
-  return this.usersService.findAllStudents();
-}
+    return this.usersService.findAllStudents();
+  }
 
   @Get(':id')
   @ApiOperation({ summary: 'Obtener un usuario por ID' })
@@ -66,14 +66,6 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
-  @Get('profile/me')
-  @ApiOperation({ summary: 'Obtener el perfil del usuario autenticado' })
-  @ApiResponse({ status: 200, description: 'Perfil del usuario' })
-  @Roles(Role.Professor, Role.Student)
-  getProfile(@Request() req) {
-    return this.usersService.findOne(req.user.id);
-  }
-
   @Patch(':id')
   @ApiOperation({ summary: 'Actualizar un usuario' })
   @ApiResponse({ status: 200, description: 'Usuario actualizado' })
@@ -86,20 +78,13 @@ export class UsersController {
     return this.usersService.update(id, updateUserDto);
   }
 
-  @Patch('profile/me')
-  @ApiOperation({ summary: 'Actualizar el perfil del usuario autenticado' })
-  @ApiResponse({ status: 200, description: 'Perfil actualizado' })
-  @Roles(Role.Professor, Role.Student)
-  updateProfile(@Request() req, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(req.user.id, updateUserDto);
-  }
  // Remove (deactivate) user
-  @Delete(':id')
+  @Patch(':id')
   @ApiOperation({ summary: 'Desactivar un usuario' })
   @ApiResponse({ status: 200, description: 'Usuario desactivado exitosamente' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado' })
   @Roles(Role.Professor)
   deactivate(@Param('id', ParseIntPipe) id: number) {
-  return this.usersService.deactivate(id);
- }
+    return this.usersService.deactivate(id);
+  }
 }

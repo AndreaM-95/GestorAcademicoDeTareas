@@ -34,10 +34,6 @@ export class UsersService {
     return safeUser;
   }
 
-  async getProfile(id: number): Promise<Partial<User>> {
-    return this.findOne(id);
-  }
-
   async findAllStudents(): Promise<Partial<User>[]> {
     return this.usersRepository.find({
       where: { role: Role.Student, isActive: true },

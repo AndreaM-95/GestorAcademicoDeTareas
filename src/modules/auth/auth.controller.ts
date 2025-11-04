@@ -6,20 +6,16 @@ import { JwtAuthGuard } from '../../common/guards/jwt.guard';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Auth')
-@Controller('api/authM')
+@Controller('/api/authM')
 export class AuthController {
-
     constructor(private authService: AuthService) { }
 
-
     /**
-     * register
-     *
-     * Endpoint para registrar un nuevo usuario.
-     * Método: POST
+     * @description Endpoint para registrar un nuevo usuario.
+     * @method POST
      * Ruta: /authM/register
-     * param data - CreateUserDto con los datos del nuevo usuario (incluye password)
-     * returns resultado del registro (mensaje y datos públicos del usuario)
+     * @param data - CreateUserDto con los datos del nuevo usuario (incluye password)
+     * @returns resultado del registro (mensaje y datos públicos del usuario)
      */
     @Post('register')
     @ApiOperation({ summary: 'Registar usuario'})
@@ -28,18 +24,13 @@ export class AuthController {
         return this.authService.register(data);
     }
 
-
     /**
-     * login
-     *
-     * Endpoint para autenticar un usuario y emitir un JWT.
-     * Método: POST
+     * @description Endpoint para autenticar un usuario y emitir un JWT.
+     * @method POST
      * Ruta: /authM/login
-     * param data - LoginDto con email y password
-     * returns objeto con accessToken (JWT) si las credenciales son válidas
-     *
+     * @param data - LoginDto con email y password
+     * @returns objeto con accessToken (JWT) si las credenciales son válidas
      */
-
     @Post('login')
     @ApiOperation({ summary: 'Inicia sesion' })
     @ApiResponse({ status: 200, description: 'Usuario logueado con exito y devuelve el JWT Token' })
@@ -49,14 +40,12 @@ export class AuthController {
     }
 
     /**
-     * getProfile
-     *
-     * Endpoint protegido que devuelve la información del usuario autenticado.
-     * Método: GET
+     * @description Endpoint protegido que devuelve la información del usuario autenticado.
+     * @method GET
      * Ruta: /authM/profile
-     * Protegido por: JwtAuthGuard
-     * param req - objeto Request; se espera req.user poblado por el guard/strategy JWT
-     * returns usuario autenticado (según lo expuesto por el strategy)
+     * @protected por: JwtAuthGuard
+     * @param req - objeto Request; se espera req.user poblado por el guard/strategy JWT
+     * @returns usuario autenticado (según lo expuesto por el strategy)
      *
      * Notas de implementación:
      * - Tipar `req` para mejorar la seguridad de tipos, por ejemplo:
@@ -70,5 +59,4 @@ export class AuthController {
     getProfile(@Request() req) {
         return req.user;
     }
-
 }

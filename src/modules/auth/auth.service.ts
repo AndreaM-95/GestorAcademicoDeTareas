@@ -23,17 +23,13 @@ export class AuthService {
         private jwtService: JwtService
     ) { }
 
-
     /**
-     * register
-     *
-     * Registra un nuevo usuario:
+     * @description Registra un nuevo usuario:
      * 1. Hashea la contraseña proporcionada.
      * 2. Persiste el usuario en la base de datos.
      * 3. Devuelve un mensaje y los campos públicos del usuario (no incluye hash).
-     *
-     * param data - CreateUserDto con los datos del nuevo usuario (incluye password)
-     * returns objeto con mensaje y datos públicos del usuario creado
+     * @param data - CreateUserDto con los datos del nuevo usuario (incluye password)
+     * @returns objeto con mensaje y datos públicos del usuario creado
      */
     async register(data: CreateUserDto) {
         const hashedPassword = await bcrypt.hash(data.password, 10);
@@ -52,19 +48,15 @@ export class AuthService {
         };
     }
 
-
     /**
-     * login
-     *
-     * Autentica a un usuario:
+     * @description Autentica a un usuario:
      * 1. Buscar al usuario por email.
      * 2. Si no existe, lanzar UnauthorizedException.
      * 3. Comparar la contraseña proporcionada con el passwordHash usando bcrypt.compare.
      * 4. Si la contraseña es válida, generar y devolver un JWT con la información mínima del usuario.
-     *
-     * param data - LoginDto con email y password
-     * returns objeto con accessToken (JWT)
-     * throws UnauthorizedException en caso de credenciales inválidas
+     * @param data - LoginDto con email y password
+     * @returns objeto con accessToken (JWT)
+     * @throws UnauthorizedException en caso de credenciales inválidas
      */
     async login(data: LoginDto) {
 
@@ -78,7 +70,6 @@ export class AuthService {
 
         if (!isPasswordValid) {
             throw new UnauthorizedException("Credenciales invalidas");
-
         }
 
         const payloadToken = { id: user.id, email: user.email, role: user.role };
