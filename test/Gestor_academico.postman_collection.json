@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "370e64ef-302c-446d-aee6-fb77b372c500",
+		"name": "Gestor_academico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23899194"
+	},
+	"item": [
+		{
+			"name": "Autenticación",
+			"item": [
+				{
+					"name": "Registrarse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"la@gamil.com\",\r\n    \"firstName\": \"Leidy\",\r\n    \"lastName\": \"Alvarez\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/authM/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"authM",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InicioSesion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"al@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/authM/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"authM",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Perfil",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJkcEBnYW1pbC5jb20iLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc2MTc4NTYwMiwiZXhwIjoxNzYxNzg5MjAyfQ.-_2et6ti7WCXDeuzoP3jFpqJt1hSHYvu1wxxrWYYrcQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/authM/profile",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"authM",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "CrearUsuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnbWFpbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxODcyODA2LCJleHAiOjE3NjE4NzY0MDZ9.xTFEyvODjWqUXw-CUlFJZKAK1urBo3MfbchyvoqrjbU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cr@gmail.com\",\r\n    \"firstName\": \"Camilo\",\r\n    \"lastName\": \"Rojas\",\r\n    \"password\": \"Camilo05\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizaUsuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnbWFpbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxODY0Njg4LCJleHAiOjE3NjE4NjgyODh9.hBSD01Xe-neEqilFmlus0h1QcwyDvfjQcBVtZfIcM7E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ro@gmail.com\",\r\n    \"firstName\": \"Raul Stiven\",\r\n    \"lastName\": \"Rodriguez\",\r\n    \"password\": \"Raulito5\",\r\n    \"role\": \"professor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/6",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tareas",
+			"item": [
+				{
+					"name": "CrearTarea",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnbWFpbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxODcyODA2LCJleHAiOjE3NjE4NzY0MDZ9.xTFEyvODjWqUXw-CUlFJZKAK1urBo3MfbchyvoqrjbU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Proyecto\",\r\n  \"description\": \" aplicación webb\",\r\n  \"dueDate\": \"2025-10-30\",\r\n  \"deadline\": \"2025-11-05T23:59:59\",\r\n  \"isCompleted\": false,\r\n  \"studentId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/tasks",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TodasLasTareas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Guards en Nest js\",\r\n    \"description\": \"Crear guardianes\",\r\n    \"dueDate\": \"23/10/2025\",\r\n    \"isCompleted\": true,\r\n    \"deadline\": \"25/10/2025\"\r\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/tasks",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TareaPorUsuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnYW1pbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxNzg5OTc5LCJleHAiOjE3NjE3OTM1Nzl9.qC4HUk-G7oMzYFVVviSRdEHozLF_c0PE4uQPsyZ4dEE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/tasks/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Calificacion",
+			"item": [
+				{
+					"name": "CrearCalificacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnbWFpbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxODcyODA2LCJleHAiOjE3NjE4NzY0MDZ9.xTFEyvODjWqUXw-CUlFJZKAK1urBo3MfbchyvoqrjbU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentId\": 2,\r\n    \"taskId\": 3,\r\n    \"score\": 4000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/grades",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"grades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizaCalificacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnYW1pbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxNzkyNzAxLCJleHAiOjE3NjE3OTYzMDF9.kh5TNJ9lxvM3rLZoK4-kE6pPUNvkmBMQauYFHLvbN3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentId\": 2,\r\n    \"taskId\": 5,\r\n    \"score\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/grades/7",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"grades",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListaTareasYCalificaciones",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnYW1pbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxNzkyNzAxLCJleHAiOjE3NjE3OTYzMDF9.kh5TNJ9lxvM3rLZoK4-kE6pPUNvkmBMQauYFHLvbN3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentId\": 2,\r\n    \"taskId\": 2,\r\n    \"score\": 3\r\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/grades/student/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"grades",
+								"student",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PromedioCalificaciones",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnbWFpbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxODY4MzQyLCJleHAiOjE3NjE4NzE5NDJ9.17hVSjKt2I9_TBamMAV4nPV1JaCTZ8nPI5umQdqhyl0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/grades/student/2/average",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"grades",
+								"student",
+								"2",
+								"average"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminaCalificación",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhbEBnYW1pbC5jb20iLCJyb2xlIjoicHJvZmVzc29yIiwiaWF0IjoxNzYxNzkyNzAxLCJleHAiOjE3NjE3OTYzMDF9.kh5TNJ9lxvM3rLZoK4-kE6pPUNvkmBMQauYFHLvbN3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentId\": 2,\r\n    \"taskId\": 2,\r\n    \"score\": 5\r\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/grades/9",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"grades",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
